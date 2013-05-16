@@ -1,0 +1,41 @@
+/*
+ * Author: Gopidi Rajesh                                         
+ * File Name:  PacketWritable.java                                   
+ * Course: COMP790-042                                           
+ * Final Project                                                
+ *                                                               
+ */    
+
+package poseidon.hadoop.io;
+
+import org.apache.hadoop.io.Writable;
+import poseidon.packet.Packet;
+import java.io.*;
+import java.util.*;
+
+public class PacketWritable implements Writable
+{
+    public Packet packet;
+
+    public Writable()
+    {
+        packet = null;
+    }
+    
+    public PacketWritable(Packet packet)
+    {
+        this.packet = packet;
+    }
+
+    public void readFields (DataInput in)
+    {
+        if (packet != null) 
+            packet.read(in);
+    }
+
+    public void write (DataOutput out)
+    {
+        if (packet != null)
+            packet.write(out); 
+    }
+}

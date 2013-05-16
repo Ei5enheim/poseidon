@@ -1,0 +1,83 @@
+/**                                                     
+ * File name: PacketReaderUtils.java
+ * Author: Rajesh Gopidi
+ * Course: COMP 790-052
+ * Final Project
+ *      
+ * This file contains the definitions for the 
+ * utility routines required to parse a TCP packet.
+ * It is assumed that the default byte order is
+ * is big-endian.
+ */     
+public class PacketReaderUtils 
+{
+    public long getUInt (byte[] buffer)
+    {   
+        // take 4 bytes from the buffer, going for the big-endian
+        return (getUInt(buffer, 0, true));
+    }
+
+    public long getUInt (byte[] buffer, int offset, boolean reverse)
+    {
+        long value = 0;
+        // take 4 bytes from the buffer
+        if (reverse)
+            value = ((buffer[offset] & 0xFF) << 24) | ((buffer[offset +1] & 0xFF) << 16) |
+                ((buffer[offset+2] & 0xFF) << 8) | (buffer[offset+3] & 0xFF);
+        else 
+            value = ((buffer[offset + 3] & 0xFF) << 24) | ((buffer[offset + 2] & 0xFF) << 16) |
+                ((buffer[offset+1] & 0xFF) << 8) | (buffer[offset] & 0xFF);
+
+        return (value);
+    }
+
+    public int getByteValue (byte[] buffer, int offset)
+    {   
+        return (buffer[offset] & 0xFF);
+    }
+
+    public int getUInt (byte[] buffer, int offset)
+    {
+        return (((buffer[offset] & 0xFF) << 8) | (buffer[offset + 1] & 0xFF));
+    }
+
+    public int getIPHLen (byte[] buffer, int offset)
+    {
+        return ((buffer[offset] & 0x0F) * 4);
+    }
+
+    public void getIP (byte[] buffer, int offset, Packet packet)
+    {
+        if (packet.sourceIP != null)
+        {
+            packet.sourceIP[3] = buffer[offset++] & 0xFF;
+            packet.sourceIP[2] = buffer[offset++] & 0xFF;
+            packet.sourceIP[1] = buffer[offset++] & 0xFF;
+            packet.sourceIP[0] = buffer[offset++] & 0xFF;
+        }    
+
+        if (packet.dstIP != null)
+        {
+            packet.dstIP[3] = buffer[offset++] & 0xFF;
+            packet.dstIP[2] = buffer[offset++] & 0xFF;
+            packet.dstIP[1] = buffer[offset++] & 0xFF;
+            packet.dstIP[0] = buffer[offset++] & 0xFF;
+        }
+    }
+
+    public int getPort (byte[] buffer, int offset) 
+    {
+        return (((buffer[offset] & 0xFF) << 8) | (buffer[offset+1] & 0xFF));
+    }
+
+    public int getTCPHLen (byte[] buffer, int offset)
+    {
+        return (((buffer[offset] & 0xF0) >> 4) * 4);
+    }
+
+    public void getPayload(byte[] buffer, int offset,
+            int length, Packet packet)
+    {
+        System.arraycopy(buffer, offset, packet.payload, 0, length);
+    }
+}

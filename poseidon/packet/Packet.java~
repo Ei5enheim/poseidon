@@ -1,0 +1,73 @@
+/**
+ * File name: Packet.java
+ * Author: Rajesh Gopidi
+ * Course: COMP 790-052
+ * Final Project
+ */
+
+package poseidon.packet;
+
+import java.io.*;
+import java.util.*;
+
+public class Packet 
+{
+    public int[] sourceIP;
+    public int[] dstIP;
+    public int sourcePort;
+    public int dstPort;
+    public byte[] payload;
+    public int MAX_PAYLOAD = 1460;
+
+    public Packet()
+    {
+        sourceIP = new int[4];
+        dstIP = new int[4];
+        payload = new byte[MAX_PAYLOAD];
+    }
+
+    public void setSrcIP (int[] IP)
+    {
+        System.arraycopy(IP, 0, sourceIP, 0, IP.length);
+    }
+
+    public void setDstIP (int[] IP)
+    {
+        System.arraycopy(IP, 0, dstIP, 0, IP.length);
+    }
+
+    public void setDstPort (int port)
+    {
+        dstPort = port;
+    }
+
+    public void setSrcPort (int port)
+    {
+        sourcePort = port;
+    }
+
+    public void setPayload (byte[] payload)
+    {
+        System.arraycopy(payload, 0, this.payload, 0, payload.length);
+    }
+
+    public void setFields (int[] srcIP, int[] dstIP, int srcPort, 
+                            int dstPort, byte[] payload)
+    {
+        sourceIP = srcIP;
+        this.dstIP = dstIP;
+        sourcePort = srcPort;
+        this.dstPort = dstPort;
+        this.payload = payload;
+    }
+
+    public void read (DataInputStream in)
+    {
+        // need to read the fields from the stream
+    }
+
+    public void write (DataOutputStream out)
+    {
+        //need write the fields here 
+    }
+}
