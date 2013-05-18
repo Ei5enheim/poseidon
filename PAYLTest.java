@@ -1,6 +1,6 @@
 /*
  * Author: Gopidi Rajesh
- * File Name: PAYLTestingTest.java 
+ * File Name: PAYLTest.java 
  * Course: COMP790-042
  * Assignment: Final Project
  *

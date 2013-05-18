@@ -1,6 +1,6 @@
 /*
  * Author: Gopidi Rajesh
- * File Name: PAYLTrainingTest.java 
+ * File Name: PAYLSDTrainingTest.java 
  * Course: COMP790-042
  * Assignment: Final Project
  *
