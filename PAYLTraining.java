@@ -1,6 +1,6 @@
 /*
  * Author: Rajesh Gopidi
- * File Name: vim  PAYLTraining.java
+ * File Name: PAYLTraining.java
  * Course: COMP790-042
  * Assignment: Final Project
  *
