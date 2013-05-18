@@ -1,6 +1,6 @@
 /*
  * Author: Rajesh Gopidi
- * File Name: vim  PAYLTesting.java
+ * File Name: PAYLTesting.java
  * Course: COMP790-042
  * Assignment: Final Project
  *
